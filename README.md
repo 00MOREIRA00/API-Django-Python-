@@ -5,7 +5,7 @@
 Ambos são escritos em Python, porém com finalidades diferentes. O Django facilita a construção de sites e aplicações web. Enquanto o Django Rest, é um conjunto de ferramentas poderosas para construir web APIS.
 
 
-## Desenvolvimento
+## Configurando
 
 1° Inicialmente criamos um ambinte para manter todas as dependencias do desenvolvimento dentro.
 
@@ -41,6 +41,13 @@ django-admin startproject config .
 ```
 
 > Usamos esse projeto para cria nosso projeto em si, porem como uma boa pratica nós criamos o projeto com o nome "config" e adicionamos o "." no final para garantir que dentro dessa pasta não seja criada mais nenhuma subpasta. Fazemos isso pois o Django admin é responsavel por todas as configurações da nossa aplicação
+
+Após esses passos a estrutura de pastas deve ficar nesse formato. Deve conter nossa virtuual machine, nosso projeto com a config e nosso arquivo manager.s
+<div align="center"><img src="./imagens/arquivosiniciais.png" style="border: 3px solid gray"></div>
+
+------------------------
+
+
 
 
 
