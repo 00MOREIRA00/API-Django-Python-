@@ -7,24 +7,24 @@ Ambos são escritos em Python, porém com finalidades diferentes. O Django facil
 
 ## Configurando
 
-1° Inicialmente criamos um ambinte para manter todas as dependencias do desenvolvimento dentro.
+1° Inicialmente criamos um ambiente para manter todas as dependências do desenvolvimento dentro.
 
-Criamos a famosa Virtual Env, que nada mais seria que um ambinete virtual leve, onde cada um possui seu proprio pacote com conjuntos de dependencias.
+Criamos a famosa Virtual Env, que nada mais seria que um ambiente virtual leve, onde cada um possui seu próprio pacote com conjuntos de dependências.
 ```
 pyton -m venv ./venv
 ```
 
-2º Depois precisamos ativar nosso ambinete virtual que foi criado.
+2º Depois precisamos ativar nosso ambiente virtual que foi criado.
 
 ```
-sintae: nome_da_virtualenv/Scripts/Activate
+Sintaxe: nome_da_virtualenv/Scripts/Activate
 
 venv/Scripts/Activate
 ```
 
-> Lembrando que o modo de ativar a .venv é diferente para cada tipo de ambinete de desenvolvimento, seja ela Linu xou Windows.
+> Lembrando que o modo de ativar a .venv é diferente para cada tipo de ambiente de desenvolvimento, seja ela Linux ou Windows.
 
-3° Baixamos todas as dependencias necessarias para o desenvolvimento.
+3° Baixamos todas as dependências necessárias para o desenvolvimento.
 
 ```
 pip install --upgrade pip
@@ -32,7 +32,7 @@ pip install --upgrade pip
 pip install Django
 ```
 
-> Observação: Podemos dar um pip freeze para identificar quais são as dependecias para o projeto, e assim garantir que o Django foi instalado.
+> Observação: Podemos dar um pip freeze para identificar quais são as dependências para o projeto, e assim garantir que o Django foi instalado.
 
 
 4º Criamos o projeto
@@ -40,9 +40,9 @@ pip install Django
 django-admin startproject config .
 ```
 
-> Usamos esse projeto para cria nosso projeto em si, porem como uma boa pratica nós criamos o projeto com o nome "config" e adicionamos o "." no final para garantir que dentro dessa pasta não seja criada mais nenhuma subpasta. Fazemos isso pois o Django admin é responsavel por todas as configurações da nossa aplicação
+> Usamos esse projeto para cria nosso projeto em si, porem como uma boa pratica nós criamos o projeto com o nome "config" e adicionamos o "." no final para garantir que dentro dessa pasta não seja criada mais nenhuma subpasta. Fazemos isso pois o Django admin é responsável por todas as configurações da nossa aplicação
 
-Após esses passos a estrutura de pastas deve ficar nesse formato. Deve conter nossa virtuual machine, nosso projeto com a config e nosso arquivo manager.s
+Após esses passos a estrutura de pastas deve ficar nesse formato. Deve conter nossa virtual machine, nosso projeto com a config e nosso arquivo manager.
 <div align="center"><img src="./imagens/arquivosiniciais.png" style="border: 3px solid gray"></div>
 
 5° Iniciando o servidor
@@ -71,7 +71,7 @@ python manage.py startapp escola
 
 <div align="center"><img src="./imagens/projeto.png" style="border: 3px solid gray"></div>
 
-2° Criar modelo de aluno e migra-lo para o banco de dados. Então vamos até o script "models" quue achamos no nosso projeto escola e criamos um script.
+2° Criar modelo de aluno e migrá-lo para o banco de dados. Então vamos até o script "models" que achamos no nosso projeto escola e criamos um script.
 
 ```
 class Aluno(models.Model) :
@@ -86,7 +86,7 @@ Nela especificamos que nosso modelo espera receber nome e rg, cada uma com sua e
 
 3° Após criar o modelo, é necessário que exportemos essa informação para o banco de dados criado pelo Django. Para fazer isso temos que ir até o arquivo "conf" que temos e incluir o nome do projeto no "INSTALLED_APPS", e após iniciarmos a migração com o código:
 ```
-//Copdigo para identificar migração
+//Código para identificar migração
 python manage.py makemigrations
 
 //Código para fazer a migração
@@ -97,7 +97,7 @@ python manage.py migrate
 
 <br/> 
 
-4° Após fazermos isso, podemos utiliza-lo e fazer cadastros, até mesmo para que possamos testar se está tudo certo. Então podemos ir até o admin.py do projeto escola.
+4° Após fazermos isso, podemos utilizá-lo e fazer cadastros, até mesmo para que possamos testar se está tudo certo. Então podemos ir até o admin.py do projeto escola.
 
 Ao me encontrar no arquivo podemos começar:
 ```
@@ -122,19 +122,19 @@ Ao tentar acessar essas informações, nós vemos que é solicitado um login que
 python manage.py createsuperuser
 ```
 
-Dessa forma teremos acesso a interface grafica de configuração do Django. Porém ainda não temos acesso as configurações de "Alunso" pois ainda não configuramos no admin.py
+Dessa forma teremos acesso a interface gráfica de configuração do Django. Porém ainda não temos acesso as configurações de "Alunos", pois ainda não configuramos no admin.py
 
 ```
 admin.site.register(Aluno, Alunos)
 ```
 
-Ao acessar podemos através da interface grafica podemos adicionar usuário, editar, excluir.
+Ao acessar podemos através da interface gráfica podemos adicionar usuário, editar, excluir.
 
 <br/>
 
 ## Desenvolvendo com Django Rest Framework
 
-1º Instalando o Djando Rest Framework no projeto
+1º Instalando o Django Rest Framework no projeto
 ```
 pip install djangorestframework
 
@@ -144,7 +144,7 @@ pip freeze
 
 Após a instalação devemos adicionar o framework nas configurações como algo que foi instalado. Assim como foi feito ao criar o projeto escola.
 
-2° O objetivo ao utilizar esse é framework é boder disponibilizar todas essas informações que foram criadas para serem consumidas como normalmente as APIs, porem elas são utilizadas usando o JSON, dessa forma utilizamos o "Serializer" para fazer essa convrersão, então criamos um arquivo "serializer.py" dentro do projeto escola.
+2° O objetivo ao utilizar esse é framework é poder disponibilizar todas essas informações que foram criadas para serem consumidas como normalmente as APIs, porem elas são utilizadas usando o JSON, dessa forma utilizamos o "Serializer" para fazer essa conversão, então criamos um arquivo "serializer.py" dentro do projeto escola.
 
 Dentro dele criaremos uma class de conversão, e dentro dessa class de conversão iremos criar uma class "Meta" para indicar o modelo que iremos utilizar, e qual os campos que serão utilizados.
 
@@ -157,7 +157,7 @@ class AlunoSerializer(serializers.ModelSerializer):
 No campo Fields temos somente os campos que queremos retornar, caso tenhamos campos que não queremos, é somente necessário não passar-lo no Fields.
 ```
 
-3º Devemos dar um jeito de maninular qual o Sereliazador e o Model, que está sendo usado. Para isso usamos o "Controler", porem no Django chamado de "View".
+3º Devemos dar um jeito de manipular qual o Sereliazador e o Model, que está sendo usado. Para isso usamos o "Controler", porem no Django chamado de "View".
 
 Vamos até o script "views.py" e criamos a seguinte class:
 ```
