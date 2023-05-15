@@ -134,3 +134,70 @@ Ao acessar podemos através da interface grafica podemos adicionar usuário, edi
 
 ## Desenvolvendo com Django Rest Framework
 
+1º Instalando o Djando Rest Framework no projeto
+```
+pip install djangorestframework
+
+//Para verificar as dependencias
+pip freeze
+```
+
+Após a instalação devemos adicionar o framework nas configurações como algo que foi instalado. Assim como foi feito ao criar o projeto escola.
+
+2° O objetivo ao utilizar esse é framework é boder disponibilizar todas essas informações que foram criadas para serem consumidas como normalmente as APIs, porem elas são utilizadas usando o JSON, dessa forma utilizamos o "Serializer" para fazer essa convrersão, então criamos um arquivo "serializer.py" dentro do projeto escola.
+
+Dentro dele criaremos uma class de conversão, e dentro dessa class de conversão iremos criar uma class "Meta" para indicar o modelo que iremos utilizar, e qual os campos que serão utilizados.
+
+```
+class AlunoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Aluno
+        Filds = ['id', 'nome', 'rg']
+
+No campo Fields temos somente os campos que queremos retornar, caso tenhamos campos que não queremos, é somente necessário não passar-lo no Fields.
+```
+
+3º Devemos dar um jeito de maninular qual o Sereliazador e o Model, que está sendo usado. Para isso usamos o "Controler", porem no Django chamado de "View".
+
+Vamos até o script "views.py" e criamos a seguinte class:
+```
+from rest_framework import viewsets
+from escola.models import Aluno
+from escola.serializer import AlunoSerializer
+
+class AlunoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Aluno
+        Filds = ['id', 'nome', 'rg']
+
+-Importante importar o Serealizardor usado para conversão
+
+-Importante importar o model usado para uso dos dados
+```
+
+<br/>
+
+4° Criaremos nossas URLs / Rotas. Para isso iremos no "urls.py" do projeto global e criaremos nosso script.
+
+```
+# Adicionamos a funcionalidade de incluir informações
+from django.urls import path, include
+# Importamos nosso View que criamos
+from escola.views import AlunosViewSet
+# Importamos a funcionalidade de Rotas que o framework disponibiliza
+from rest_framework import routes
+
+# Adicionamos um router principal
+router = routers.DefaultRouter()
+router.register(r'alunos', AlunosViewSet)
+
+Adicionamos paths de consulta
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    # Ao buscar sem nenhum adicional, ou seja a url pura, teremos como retorno nossa url
+    path('', include(router.urls)),
+]
+```
+
+Com essa url em questão podemos consumir essa API, criando, deletando, modificando e buscando o conteúdo.
+
